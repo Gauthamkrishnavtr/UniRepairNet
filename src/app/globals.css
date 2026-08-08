@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc; /* slate-50 */
+  --foreground: #0f172a; /* slate-900 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  
+  /* Custom colors */
+  --color-brand-blue: #2563eb;
+  --color-brand-teal: #0d9488;
+  --color-brand-emerald: #059669;
+  --color-brand-amber: #d97706;
+  --color-brand-crimson: #dc2626;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5); /* slate-100/50 */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(203, 213, 225, 0.7); /* slate-300/70 */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7); /* slate-400/70 */
+}
+
+/* Glassmorphism utilities - light mode adaptation */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8); /* slate-200/80 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+.glass-panel-glow-blue:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.08);
+}
+
+.glass-panel-glow-emerald:hover {
+  border-color: rgba(5, 150, 105, 0.4);
+  box-shadow: 0 0 20px rgba(5, 150, 105, 0.08);
+}
+
+.glass-panel-glow-amber:hover {
+  border-color: rgba(217, 119, 6, 0.4);
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.08);
+}
+
+.glass-panel-glow-crimson:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.08);
+}
+
+/* Terminal Log Scanline Animation */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to bottom, rgba(37, 99, 235, 0.15), transparent);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Network Layer Animation and Glows */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 2px rgba(37, 99, 235, 0.3));
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Grid overlay background */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+}
+
